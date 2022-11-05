@@ -29,7 +29,14 @@ function Nav(props) {
   ];
   for(let i=0; i<props.topics.length; i++) {
     let t = props.topics[i];
-    lis.push(<li key={t.id}><a href={'/read/' + t.id}>{t.title}</a></li>);
+    lis.push(<li key={t.id}>
+      <a id={t.id} href={'/read/' + t.id} onClick={(event)=>{
+        event.preventDefault();
+        props.onChangeMode(event.target.id); // event.target은 이벤트를 발생시킨 태그를 가리킴.
+      }}>
+        {t.title}
+        </a>
+      </li>);
   }
 
   return (
@@ -61,7 +68,9 @@ function App() {
       <Header title="REACT" onChangeMode={()=>{
         alert('Header');
       }}></Header>
-      <Nav topics={topics}></Nav>
+      <Nav topics={topics} onChangeMode={(id)=>{
+        alert(id);
+      }}></Nav>
       <Article title="Welcome" body="Hello, Web!"></Article>
     </div>
   );
