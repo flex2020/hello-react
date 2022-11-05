@@ -42,14 +42,15 @@
 > - props를 통해 다른 컴포넌트에서 값을 이용할 수 있다.
 > - 태그 안에서 props의 값을 식으로 사용하기 위해선 {props.[변수명]} 과 같이 중괄호로 감싸준다.
 > #
-> ### 5. 
-> - 
-> - 
-> - 
+> ### 5. State로 View에 렌더링되는 데이터 받아오기
+> - 아래와 같이 선언할 수 있다.
+>   <pre><code>const [data, setData] = useState(null);</code></pre>
+> - 이 때, data는 읽기, setData는 data를 수정하기 위해 사용한다.
+> - State는 View에 렌더링되는 데이터로 컴포넌트 안에서 관리된다.
 > #
-> ### 6. 
-> - 
-> - 
-> - 
+> ### 6. state가 객체인 경우 setState하는 법
+> - const newState = {...state}; 혹은 배열인 경우 const newArray = [...array];로 객체를 복사하여 저장한다.
+> - 그리고 newState에 값을 변경, 수정한다.
+> - setState를 통해 newState로 state를 바꾼다. (setState를 하게 되면 바뀐 값이랑 다른 경우 값을 바꿔준다.)
 > #
 # 
