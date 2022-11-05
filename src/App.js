@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {useState} from 'react'; // state를 사용하기 위한 훅
 /**
  * 리액트에서는 아래와 같이 컴포넌트를 함수처럼 정의하여 사용할 수 있다.
  * 또한, 함수의 매개변수로 props를 두어 사용자 정의 컴포넌트에서 설정한 속성을 사용할 수 있다.
@@ -29,10 +29,11 @@ function Nav(props) {
   ];
   for(let i=0; i<props.topics.length; i++) {
     let t = props.topics[i];
+
     lis.push(<li key={t.id}>
       <a id={t.id} href={'/read/' + t.id} onClick={(event)=>{
         event.preventDefault();
-        props.onChangeMode(event.target.id); // event.target은 이벤트를 발생시킨 태그를 가리킴.
+        props.onChangeMode(Number(event.target.id)); // event.target은 이벤트를 발생시킨 태그를 가리킴.
       }}>
         {t.title}
         </a>
@@ -58,20 +59,40 @@ function Article(props) {
 }
 
 function App() {
+  /**
+   * state로 내부 상태를 바꿀 수도 있음
+   */
+  const [mode, setMode] = useState('WELCOME'); // 초기상태 WELCOME으로 만듦. _mode는 배열임 _mode[0] = 상태의 값, _mode[1] = setMode함수
+  const [id, setId] = useState(null); 
   const topics = [
     {id:1, title:'html', body: 'html is ...'},
     {id:2, title:'css', body: 'css is ...'},
     {id:3, title:'javascript', body: 'javascript is ...'}
   ];
+  let content = null;
+  if(mode === 'WELCOME') {
+    content = <Article title="Welcome" body="Hello, Web!"></Article>;
+  } else if (mode === 'READ') {
+    let title, body = null;
+    for(let i=0; i<topics.length; i++) {
+      //console.log(topics[i].id, id);
+      if(topics[i].id === id) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = <Article title={title} body={body}></Article>;
+  }
   return (
     <div>
       <Header title="REACT" onChangeMode={()=>{
-        alert('Header');
+        setMode('WELCOME');
       }}></Header>
-      <Nav topics={topics} onChangeMode={(id)=>{
-        alert(id);
+      <Nav topics={topics} onChangeMode={(_id)=>{
+        setMode('READ');
+        setId(_id);
       }}></Nav>
-      <Article title="Welcome" body="Hello, Web!"></Article>
+      {content}
     </div>
   );
 }
