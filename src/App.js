@@ -135,11 +135,24 @@ function App() {
       }
     }
     content = <Article title={title} body={body}></Article>;
-    contextControl = <li><a href={'/update' + id} onClick={event=>{
+    contextControl = <>
+    <li><a href={'/update' + id} onClick={event=>{
       event.preventDefault();
       setMode('UPDATE');
     }}>Update 
-    </a></li>;
+    </a></li>
+    {/* Delete 버튼 구현 내용 */}
+    <li><input type="button" value="Delete" onClick={()=>{
+      const newTopics = [];
+      for(let i=0; i<topics.length; i++) {
+        if(topics[i].id !== id) {
+          newTopics.push(topics[i]);
+        }
+      }
+      setTopics(newTopics);
+      setMode("WELCOME");
+    }}/></li>
+    </>;
   } else if (mode === 'CREATE') {
     content = <Create onCreate={(_title, _body)=>{
       const newTopic = {id:nextId ,title:_title, body:_body};
