@@ -11,7 +11,7 @@
 > Windows 10 / VSCode(node.js) / Chrome
 > ### 1. React-App 생성 및 시작
 > - <a href="https://github.com/facebook/create-react-app">facebook/create-react-app</a>을 참고하여 시작한다
-> - 프로젝트 시작 폴더에서 아래와 같이 입력
+> - 프로젝트 시작 폴더에서 아래와 같이 입력 (node.js가 설치되어있다면, next.js 설치를 하면서 react-dom과 같은 모듈도 같이 설치된다.)
 > 
 >   <pre><code> npx create-react-app my-app </code></pre>
 > - 프로젝트를 작성 후 시작하려면 아래와 같이 입력
