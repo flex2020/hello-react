@@ -7,7 +7,7 @@
 > 
 > (+) 참고 및 출처 : https://hymndev.tistory.com/45
 ## 공부한 내용들
-> ### 구현 환경 / 사용한 IDE / 브라우저
+> ### 구현 환경 / 코드 편집기 / 브라우저
 > Windows 10 / VSCode(node.js) / Chrome
 > ### 1. React-App 생성 및 시작
 > - <a href="https://github.com/facebook/create-react-app">facebook/create-react-app</a>을 참고하여 시작한다
